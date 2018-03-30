@@ -7,7 +7,7 @@ object Example_01 {
       config("spark.master","local").
       getOrCreate()
 
-    // 끝자리 0인 수만 !
+    /// 끝자리 0인 수만 !
     var testArray=Array(22,33,50,70,90,100)
 
     var answer=testArray.filter(x=> {
