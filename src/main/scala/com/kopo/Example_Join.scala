@@ -1,6 +1,6 @@
 package com.kopo
 
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.SparkSession;
 
 object Example_Join {
 
@@ -21,6 +21,13 @@ object Example_Join {
     subDataDf.createOrReplaceTempView("subTable")
 
     mainDataDf.show()
+
+    //left join 예제
+    var leftjoinData= spark.sql("select a.regionid, a.productgroup, b.productname, a.yearweek, a.qty "+
+      "from mainTable a " +
+      "left join subTable b " +
+      "on a.productgroup = b.productid")
+
   }
 
 }
