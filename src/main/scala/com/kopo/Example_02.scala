@@ -6,7 +6,7 @@ object Example_02 {
       config("spark.master","local").
       getOrCreate()
 
-    //postgresql에서 kopo_channel_seasonality 테이블 불러오기 예제
+    //postgresql에서 kopo_channel_seasonality 테이블 불러오기
     var staticUrl="jdbc:postgresql://192.168.110.111:5432/kopo"
     var staticUser="kopo"
     var staticPw="kopo"
