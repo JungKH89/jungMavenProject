@@ -6,6 +6,7 @@ object Example_04 {
       config("spark.master","local").
       getOrCreate()
 
+    //sqlserver접속
     var staticUrl = "jdbc:sqlserver://192.168.110.70:1433;databaseName=kopo"
     var staticUser = "haiteam"
     var staticPw = "haiteam"
