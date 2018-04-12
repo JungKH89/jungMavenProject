@@ -6,6 +6,7 @@ object Example_03 {
       config("spark.master","local").
       getOrCreate()
 
+    //mysql접속
     var  staticUrl = "jdbc:mysql://192.168.110.112:3306/kopo"
     var  staticUser = "root"
     var  staticPw = "P@ssw0rd"
