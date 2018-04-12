@@ -26,9 +26,9 @@ object Example_0412 {
 
     //불러온 테이블 left join
     //concat & cast
-    var middleResult = spark.sql("select " +
+    var rawData = spark.sql("select " +
       "concat(a.regionid,'_',a.product) as keycol, " +
-      "a.regionid, "+
+      "a.regionid as accountid, "+
       "a.product, " +
       "a.yearweek, "+
       "cast(a.qty as double) as qty, "+
@@ -37,6 +37,14 @@ object Example_0412 {
       "left join mstTable b "+
       "on a.product = b.product_id")
 
-    middleResult.show()
+    rawData.show()
+
+    //column 인덱스 생성하기
+    var rawDataColumns = rawData.columns
+    var keyNo = rawDataColumns.indexOf("keycol")
+    var accountidNo = rawDataColumns.indexOf("accountid")
+    var productNo = rawDataColumns.indexOf("product")
+    var yearweekNo = rawDataColumns.indexOf("yearweek")
+
   }
 }
