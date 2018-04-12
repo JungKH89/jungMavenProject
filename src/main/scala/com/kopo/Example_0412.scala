@@ -24,6 +24,19 @@ object Example_0412 {
     selloutData.show()
     productMasterDf.show()
 
-  }
+    //불러온 테이블 left join
+    //concat & cast
+    var middleResult = spark.sql("select " +
+      "concat(a.regionid,'_',a.product) as keycol, " +
+      "a.regionid, "+
+      "a.product, " +
+      "a.yearweek, "+
+      "cast(a.qty as double) as qty, "+
+      "b.product_name "+
+      "from selloutTable a "+
+      "left join mstTable b "+
+      "on a.product = b.product_id")
 
+    middleResult.show()
+  }
 }
