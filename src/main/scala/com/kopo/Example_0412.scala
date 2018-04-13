@@ -46,5 +46,7 @@ object Example_0412 {
     var productNo = rawDataColumns.indexOf("product")
     var yearweekNo = rawDataColumns.indexOf("yearweek")
 
+    //column명을 바꾸는 함수
+    rawData.toDF("AA","BB","CC","DD","EE","FF")
   }
 }
