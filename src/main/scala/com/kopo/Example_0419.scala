@@ -41,6 +41,7 @@ object Example_0419 {
     var accountidNo = rawDataColumns.indexOf("accountid")
     var productNo = rawDataColumns.indexOf("product")
     var yearweekNo = rawDataColumns.indexOf("yearweek")
+    var qtyNo = rawDataColumns.indexOf("qty")
 
     //RDD변환
     var rawRdd = rawData.rdd
@@ -82,6 +83,7 @@ object Example_0419 {
       checkValid
     })
 
+    //Rdd -> DataFrame
     val finalResultDf = spark.createDataFrame(resultRdd,
       StructType(
         Seq(
@@ -92,6 +94,7 @@ object Example_0419 {
           StructField("VOLUME", DoubleType),
           StructField("PRODUCT_NAME", StringType))))
 
+    finalResultDf.show()
   }
 
 }
