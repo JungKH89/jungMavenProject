@@ -1,6 +1,7 @@
 package com.kopo
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.{StringType, DoubleType, StructField, StructType}
+import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
+
 object Example_0419 {
 
   def main(args: Array[String]): Unit = {
@@ -60,6 +61,7 @@ object Example_0419 {
     })
 
 
+    //---------------------------filter--------------------------------
     //상품정보가 product 1,2 인 정보만 필터링
     //분석대상 제품군 등록
     var productAttay = Array("PRODUCT1","PRODUCT2")
@@ -83,7 +85,32 @@ object Example_0419 {
       checkValid
     })
 
-    //Rdd -> DataFrame
+
+
+    //resultRdd.first
+    //resultRdd = (키정보, 지역정보, 상품정보, 연주차정보, 거래량 정보, 상품이름정보)
+    //-----------------------------map--------------------------------
+    //처리로직 : 거래량이 MAXVALUE 이상인건은 MAXVALUE로 치환
+    var maxValue = 700000
+
+    var mapRdd =resultRdd.map(x=>{
+      //디버깅코드 : var x = mapRdd.filter(x=>{ x.getDouble(qtyNo) > 700000 }).first
+      var org_qty = x.getDouble(qtyNo)
+      var new_qty=org_qty
+      if(new_qty > maxValue){new_qty = maxValue}
+
+      //출력 row  키정보, 연주차정보, 거래량 정보_org, 거래량 정보_new
+      //Row쓰려면 import해야함  import org.apache.spark.sql.{Row, SparkSession}
+      Row( x.getString(keyNo),
+        x.getString(yearweekNo),
+        org_qty,
+        new_qty
+      )
+    })
+
+
+    //-----------------------Rdd -> DataFrame-------------------------
+    //import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}
     val finalResultDf = spark.createDataFrame(resultRdd,
       StructType(
         Seq(
@@ -95,6 +122,10 @@ object Example_0419 {
           StructField("PRODUCT_NAME", StringType))))
 
     finalResultDf.show()
+
+
+
   }
+
 
 }
