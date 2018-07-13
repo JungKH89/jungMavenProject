@@ -121,7 +121,7 @@ object Example_0419 {
           StructField("VOLUME", DoubleType),
           StructField("PRODUCT_NAME", StringType))))
 
-    finalResultDf.show()
+    finalResultDf.show(2)
 
 
 

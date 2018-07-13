@@ -6,6 +6,7 @@ object Def_Ex {
     return a
   }
 
+
   //';'를 기점으로 앞, 뒤로 변수 나눠주기
   //2017;34를 입력받으면 2017과 34로 나누기
   def testDiv(str:String) :(Int, Int)={

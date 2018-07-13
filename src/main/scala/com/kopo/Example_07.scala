@@ -19,16 +19,7 @@ object Example_07 {
 
     selloutData.schema
 
-    selloutData.createTempView("maindata")
 
-    var tet=spark.sql("select * from maindata")
-    tet.show(1)
-
-    var tet=spark.sql("select cast(qty as double) as qty from maindata")
-    tet.show
-    tet.schema
-    var tet=spark.sql("select cast(qty as double) as qty2 from maindata")
-    tet.show
 
   }
 }

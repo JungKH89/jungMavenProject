@@ -44,6 +44,7 @@ object Example_0413 {
     //RDD변환
     var rawRdd = rawData.rdd
 
+
     //불필요한 데이터 정제
     var rawExRdd1 = rawRdd.filter(x=> {
       //데이터 한줄씩 들어옴
